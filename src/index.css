@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: white;
+}
+
+.links li {
+  @apply cursor-pointer text-xs font-bold hover:bg-primary hover:text-off-black bg-grey px-3 py-2 w-[280px] rounded-md;
+}
+
+label {
+  @apply text-xs font-bold text-primary;
+}
