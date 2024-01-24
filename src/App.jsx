@@ -42,7 +42,7 @@ const App = () => {
           />
           <Button
             text="Edit"
-            className="mt-5 w-[80px] bg-primary text-off-black hover:bg-primary/90 px-3 py-2 rounded-md font-bold text-xs"
+            className="mt-5 w-[80px] bg-primary text-off-black hover:bg-primary/90 px-3 py-2 rounded-md font-bold text-xs md:text-sm"
             onClick={() => setEditStatus(true)}
           />
         </>
@@ -74,10 +74,10 @@ const App = () => {
                 setErrorStatus((prev) => ({ ...prev, hasError: false }));
               }}
               type="button"
-              className="mt-5 w-[80px] bg-primary text-off-black hover:bg-primary/90 px-3 py-2 rounded-md font-bold text-xs"
+              className="mt-5 w-[80px] bg-primary text-off-black hover:bg-primary/90 px-3 py-2 rounded-md font-bold text-xs md:text-sm"
             />
             <Button
-              className="mt-5 w-[80px] bg-primary text-off-black hover:bg-primary/90 px-3 py-2 rounded-md font-bold text-xs"
+              className="mt-5 w-[80px] bg-primary text-off-black hover:bg-primary/90 px-3 py-2 rounded-md font-bold text-xs md:text-sm"
               text="Cancel"
               onClick={() => setEditStatus(false)}
             />
