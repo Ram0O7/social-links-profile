@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ProfileCard from "./components/ProfileCard";
 import profileImg from "./assets/images/avatar-jessica.jpeg";
 import InputCard from "./components/InputCard";
+import Button from "./components/Button";
 
 const App = () => {
   const [image, setImage] = useState(profileImg);
@@ -9,6 +10,21 @@ const App = () => {
   const [city, setCity] = useState("London");
   const [country, setCountry] = useState("United Kingdom");
   const [about, setAbout] = useState("Front-end developer and avid reader.");
+
+  // passing to the child form component to handle reset form logic
+  const formRef = useRef(null);
+
+  const [errorStatus, setErrorStatus] = useState({
+    hasError: false,
+    errorMsg: "Please fill out all the fields.",
+  });
+
+  const [socialLinks, setSocialLinks] = useState({
+    twitter: "https://twitter.com",
+    github: "https://github.com",
+    instagram: "https://instagram.com",
+    linkedin: "https://linkedin.com",
+  });
 
   const [editStatus, setEditStatus] = useState(false);
 
@@ -22,13 +38,13 @@ const App = () => {
             city={city}
             country={country}
             about={about}
+            socialLinks={socialLinks}
           />
-          <button
+          <Button
+            text="Edit"
             className="mt-5 w-[80px] bg-primary text-off-black hover:bg-primary/90 px-3 py-2 rounded-md font-bold text-xs"
             onClick={() => setEditStatus(true)}
-          >
-            New
-          </button>
+          />
         </>
       ) : (
         <>
@@ -44,13 +60,28 @@ const App = () => {
             getCountry={(country) => setCountry(country)}
             getAbout={(about) => setAbout(about)}
             updateEditStatus={() => setEditStatus(false)}
+            socialLinks={socialLinks}
+            getSocialLinks={(socialLinks) => setSocialLinks(socialLinks)}
+            formRef={formRef}
+            errorStatus={errorStatus}
+            setErrorStatus={(errorStatus) => setErrorStatus(errorStatus)}
           />
-          <button
-            className="mt-5 w-[80px] bg-primary text-off-black hover:bg-primary/90 px-3 py-2 rounded-md font-bold text-xs"
-            onClick={() => setEditStatus(false)}
-          >
-            Cancel
-          </button>
+          <div className="w-[320px] flex items-center justify-between gap-3">
+            <Button
+              text="Reset"
+              onClick={() => {
+                formRef.current.reset();
+                setErrorStatus((prev) => ({ ...prev, hasError: false }));
+              }}
+              type="button"
+              className="mt-5 w-[80px] bg-primary text-off-black hover:bg-primary/90 px-3 py-2 rounded-md font-bold text-xs"
+            />
+            <Button
+              className="mt-5 w-[80px] bg-primary text-off-black hover:bg-primary/90 px-3 py-2 rounded-md font-bold text-xs"
+              text="Cancel"
+              onClick={() => setEditStatus(false)}
+            />
+          </div>
         </>
       )}
     </main>
